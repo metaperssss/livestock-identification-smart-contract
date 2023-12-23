@@ -1,0 +1,30 @@
+type Livestock = record {
+  id : text;
+  birthdate : nat64;
+  name : text;
+  createdAt : nat64;
+  birthplace_name : text;
+  updatedAt : opt nat64;
+  birthplace_address : text;
+  gender : text;
+  breed : text;
+  species : text;
+};
+type LivestockPayload = record {
+  birthdate : nat64;
+  name : text;
+  birthplace_name : text;
+  birthplace_address : text;
+  gender : text;
+  breed : text;
+  species : text;
+};
+type _AzleResult = variant { Ok : Livestock; Err : text };
+type _AzleResult_1 = variant { Ok : vec Livestock; Err : text };
+service : () -> {
+  addLivestock : (LivestockPayload) -> (_AzleResult);
+  deleteLivestock : (text) -> (_AzleResult);
+  getLivestock : (text) -> (_AzleResult) query;
+  getLivestocks : () -> (_AzleResult_1) query;
+  updateLivestock : (text, LivestockPayload) -> (_AzleResult);
+}
